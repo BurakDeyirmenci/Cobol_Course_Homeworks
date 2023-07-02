@@ -9,6 +9,11 @@
 //***************************************************/
 // IF RC < 5 THEN
 //***************************************************/
+//DELET100 EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+   DELETE Z95628.QSAM.OUT NONVSAM
+   IF LASTCC LE 08 THEN SET MAXCC = 00
 //RUN     EXEC PGM=FILTER01
 //STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
 //INPFILE   DD DSN=&SYSUID..QSAM.INP,DISP=SHR
@@ -17,7 +22,7 @@
 //             DISP=(NEW,CATLG,DELETE),
 //             UNIT=SYSDA,
 //             SPACE=(TRK,(10,10),RLSE),
-//             DCB=(RECFM=FB,LRECL=61,BLKSIZE=0)
+//             DCB=(RECFM=FB,LRECL=76,BLKSIZE=0)
 //SYSOUT    DD SYSOUT=*,OUTLIM=15000
 //CEEDUMP   DD DUMMY
 //SYSUDUMP  DD DUMMY
